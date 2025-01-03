@@ -9,4 +9,4 @@ class Knight(Piece):
         return f"{constants.KNIGHT}{self.get_color()}"
 
     def can_move(self, chessboard, file, rank):
-        return can_jump(chessboard, self.file, self.rank, file, rank)
+        return can_jump(chessboard, self.file, self.rank, file, rank, self.is_white)
