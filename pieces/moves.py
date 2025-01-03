@@ -51,7 +51,7 @@ def __can_place(chessboard, end_file, end_rank, placing_piece_is_white):
 
 
 def get_dx(start_rank, end_rank):
-    return -1 if end_rank > start_rank else 1
+    return 1 if end_rank > start_rank else -1
 
 
 def get_dy(start_file, end_file):
@@ -93,18 +93,19 @@ def can_move_vertically(
     is_white,
     capture_allowed=True,
 ):
+    dx = get_dx(start_rank, end_rank)
     return (
         not is_same_position(start_file, start_rank, end_file, end_rank)
         and __is_same_file(start_file, end_file)
         and all(
             chessboard.is_empty(rank, end_file)
-            for rank in range(start_rank, end_rank, get_dx(start_rank, end_rank))
+            for rank in range(start_rank + dx, end_rank, dx)
         )
         and (
             capture_allowed
             and __can_place(chessboard, end_file, end_rank, is_white)
             or not capture_allowed
-            and chessboard.is_empty(end_rank, end_file)
+            and chessboard.is_empty(end_file, end_rank)
         )
     )
 
