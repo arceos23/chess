@@ -46,7 +46,7 @@ class Pawn(Piece):
         return self.rank == self.__get_starting_rank()
 
     def can_move(self, chessboard, file, rank, logger):
-        if not self.__is_valid_vertical_direction(self, self.rank, rank):
+        if not self.__is_valid_vertical_direction(self.rank, rank):
             return False
 
         moves_forward = abs(rank - self.rank)
