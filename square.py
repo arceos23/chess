@@ -10,21 +10,7 @@ class Square:
         self._black_check_count = 0
 
     def __str__(self):
-        if type(self.piece) == bishop.Bishop:
-            char = constants.BISHOP
-        elif type(self.piece) == king.King:
-            char = constants.KING
-        elif type(self.piece) == knight.Knight:
-            char = constants.KNIGHT
-        elif type(self.piece) == pawn.Pawn:
-            char = constants.PAWN
-        elif type(self.piece) == queen.Queen:
-            char = constants.QUEEN
-        elif type(self.piece) == rook.Rook:
-            char = constants.ROOK
-        else:
-            char = "--"
-        return char
+        return "__" if self.piece is None else str(self.piece)
 
     def is_empty(self):
         return self.piece is None
