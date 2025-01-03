@@ -98,7 +98,7 @@ def can_move_vertically(
         not is_same_position(start_file, start_rank, end_file, end_rank)
         and __is_same_file(start_file, end_file)
         and all(
-            chessboard.is_empty(rank, end_file)
+            chessboard.is_empty(end_file, rank)
             for rank in range(start_rank + dx, end_rank, dx)
         )
         and (
@@ -131,7 +131,7 @@ def can_move_diagonally(
         not is_same_position(start_file, start_rank, end_file, end_rank)
         and abs(start_file - end_file) == abs(start_rank - end_rank)
         and all(
-            chessboard.is_empty(rank, file)
+            chessboard.is_empty(file, rank)
             for rank in range(start_rank, end_rank, get_dx(start_rank, end_rank))
             for file in range(start_file, end_file, get_dy(start_file, end_file))
         )
