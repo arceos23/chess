@@ -17,7 +17,7 @@ class Chessboard:
     )
 
     def __init__(self):
-        self.board = [[Square()] * 8 for _ in range(8)]
+        self.__board = [[Square() for _ in range(8)] for _ in range(8)]
         for file, char in enumerate(self.__END_RANK_ORDER):
             match char:
                 case constants.ROOK:
@@ -35,13 +35,13 @@ class Chessboard:
                 case constants.KING:
                     black = king.King(False, file, constants.BLACK_START_RANK)
                     white = king.King(True, file, constants.WHITE_START_RANK)
-            self.board[constants.BLACK_START_RANK][file] = black
-            self.board[constants.WHITE_START_RANK][file] = white
+            self.__board[constants.BLACK_START_RANK][file].piece = black
+            self.__board[constants.WHITE_START_RANK][file].piece = white
 
-            self.board[constants.BLACK_START_RANK + 1][file] = pawn.Pawn(
+            self.__board[constants.BLACK_START_RANK + 1][file].piece = pawn.Pawn(
                 False, file, constants.BLACK_START_RANK + 1
             )
-            self.board[constants.WHITE_START_RANK - 1][file] = pawn.Pawn(
+            self.__board[constants.WHITE_START_RANK - 1][file].piece = pawn.Pawn(
                 True, file, constants.WHITE_START_RANK - 1
             )
 
@@ -49,7 +49,7 @@ class Chessboard:
         files = f'  {"  ".join(constants.FILES)}  '
         board_rep = []
         board_rep.append(files)
-        for rank, row in enumerate(self.board):
+        for rank, row in enumerate(self.__board):
             current_rank = str(constants.RANKS[rank])
             board_rep.append(
                 f'{current_rank} {" ".join(str(piece) for piece in row)} {current_rank}'
@@ -57,11 +57,26 @@ class Chessboard:
         board_rep.append(files)
         return "\n".join(board_rep)
 
+    def __get_square(self, file, rank):
+        return self.__board[rank][file]
+
     def is_check(self, file, rank, is_white):
         pass
 
-    def is_empty(self, rank, file):
-        return self.board[rank][file].is_empty()
+    def is_empty(self, file, rank):
+        return self.__get_square(file, rank).is_empty()
 
-    def get_piece(self, rank, file):
-        return self.board[rank][file].piece
+    def get_piece(self, file, rank):
+        return self.__get_square(file, rank).piece
+
+    def move_piece(self, start_file, start_rank, end_file, end_rank):
+        source_square = self.__get_square(start_file, start_rank)
+        destination_square = self.__get_square(end_file, end_rank)
+        destination_square.piece = source_square.piece
+        source_square.piece = None
+
+    def is_game_over(self):
+        return False
+
+    def get_result(self):
+        pass
