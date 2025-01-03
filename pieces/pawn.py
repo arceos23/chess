@@ -15,7 +15,7 @@ class Pawn(Piece):
 
     def __is_valid_vertical_direction(self, start_rank, end_rank):
         dx = get_dx(start_rank, end_rank)
-        return dx > 0 and self.is_white or dx < 0 and not self.is_white
+        return dx < 0 and self.is_white or dx > 0 and not self.is_white
 
     def __can_capture(self, chessboard, file, rank):
         capturing_piece = chessboard.get_piece(rank, file)
@@ -40,10 +40,10 @@ class Pawn(Piece):
         return last_move[-1] == 2
 
     def __get_starting_rank(self):
-        return 7 if self.is_white else 1
+        return 6 if self.is_white else 1
 
     def __has_moved(self):
-        return self.rank == self.__get_starting_rank()
+        return self.rank != self.__get_starting_rank()
 
     def can_move(self, chessboard, file, rank, logger):
         if not self.__is_valid_vertical_direction(self.rank, rank):
