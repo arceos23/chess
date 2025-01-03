@@ -42,7 +42,7 @@ def __is_same_rank(start_rank, end_rank):
 
 
 def __can_place(chessboard, end_file, end_rank, placing_piece_is_white):
-    end_piece = chessboard.get_piece(end_rank, end_file)
+    end_piece = chessboard.get_piece(end_file, end_rank)
     return (
         end_piece is None
         or end_piece.is_white != placing_piece_is_white
@@ -139,7 +139,8 @@ def can_move_diagonally(
 
 
 def can_jump(chessboard, start_file, start_rank, end_file, end_rank, is_white):
+    dy = end_file - start_file
+    dx = end_rank - start_rank
     return any(
-        end_file - start_file == move.dx and end_rank - start_rank == move.dy
-        for move in __VALID_JUMP_MOVES
+        dx == move.dx and dy == move.dy for move in __VALID_JUMP_MOVES
     ) and __can_place(chessboard, end_file, end_rank, is_white)
