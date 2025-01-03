@@ -18,7 +18,7 @@ class Pawn(Piece):
         return dx < 0 and self.is_white or dx > 0 and not self.is_white
 
     def __can_capture(self, chessboard, file, rank):
-        capturing_piece = chessboard.get_piece(rank, file)
+        capturing_piece = chessboard.get_piece(file, rank)
         return (
             capturing_piece is not None
             and type(capturing_piece) != King

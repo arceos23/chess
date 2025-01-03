@@ -51,11 +51,11 @@ def __can_place(chessboard, end_file, end_rank, placing_piece_is_white):
 
 
 def get_dx(start_rank, end_rank):
-    return 1 if end_rank > start_rank else -1
+    return end_rank - start_rank
 
 
 def get_dy(start_file, end_file):
-    return 1 if end_file > start_file else -1
+    return end_file - start_file
 
 
 def can_move_orthogonally_adjacent(
