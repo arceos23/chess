@@ -118,15 +118,6 @@ def can_move_horizontally(
     chessboard, start_file, start_rank, end_file, end_rank, is_white
 ):
     y_move = get_direction(get_dy(start_file, end_file))
-    print(
-        not is_same_position(start_file, start_rank, end_file, end_rank),
-        __is_same_rank(start_rank, end_rank),
-        all(
-            chessboard.is_empty(file, end_rank)
-            for file in range(start_file + y_move, end_file, y_move)
-        ),
-        __can_place(chessboard, end_file, end_rank, is_white),
-    )
     return (
         not is_same_position(start_file, start_rank, end_file, end_rank)
         and __is_same_rank(start_rank, end_rank)
