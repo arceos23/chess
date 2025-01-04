@@ -12,7 +12,7 @@ import constants
 class Queen(Piece):
 
     def __str__(self):
-        return f"{constants.QUEEN}{self.get_color()}"
+        return constants.WHITE_QUEEN if self.is_white else constants.BLACK_QUEEN
 
     def __is_vertical_move(self, file, rank):
         return get_dx(self.rank, rank) != 0 and get_dy(self.file, file) == 0

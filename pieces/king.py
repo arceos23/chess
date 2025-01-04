@@ -10,7 +10,7 @@ class King(Piece):
         self._has_moved = False
 
     def __str__(self):
-        return f"{constants.KING}{self.get_color()}"
+        return constants.WHITE_KING if self.is_white else constants.BLACK_KING
 
     def can_move(self, chessboard, file, rank):
         return (

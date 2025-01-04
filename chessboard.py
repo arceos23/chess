@@ -46,7 +46,7 @@ class Chessboard:
             )
 
     def __str__(self):
-        files = f'  {"  ".join(constants.FILES)}  '
+        files = f'  {" ".join(constants.FILES)} '
         board_rep = []
         board_rep.append(files)
         for rank, row in enumerate(self.__board):

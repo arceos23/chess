@@ -11,7 +11,7 @@ class Pawn(Piece):
         self._has_moved = False
 
     def __str__(self):
-        return f"{constants.PAWN}{self.get_color()}"
+        return constants.WHITE_PAWN if self.is_white else constants.BLACK_PAWN
 
     def __is_valid_vertical_direction(self, start_rank, end_rank):
         dx = get_dx(start_rank, end_rank)

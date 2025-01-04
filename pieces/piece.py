@@ -13,6 +13,3 @@ class Piece(ABC):
     def can_move(self, chessboard, file, rank):
         """Return True if the piece can move to the new file and rank."""
         pass
-
-    def get_color(self):
-        return constants.WHITE if self.is_white else constants.BLACK

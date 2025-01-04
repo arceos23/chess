@@ -11,7 +11,7 @@ class Rook(Piece):
         self._has_moved = False
 
     def __str__(self):
-        return f"{constants.ROOK}{self.get_color()}"
+        return constants.WHITE_ROOK if self.is_white else constants.BLACK_ROOK
 
     def can_move(self, chessboard, file, rank):
         return can_move_vertically(

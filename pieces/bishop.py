@@ -6,7 +6,7 @@ import constants
 class Bishop(Piece):
 
     def __str__(self):
-        return f"{constants.BISHOP}{self.get_color()}"
+        return constants.WHITE_BISHOP if self.is_white else constants.BLACK_BISHOP
 
     def can_move(self, chessboard, file, rank):
         return can_move_diagonally(
