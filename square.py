@@ -1,7 +1,3 @@
-from pieces import bishop, king, knight, pawn, queen, rook
-import constants
-
-
 class Square:
 
     def __init__(self):
@@ -10,7 +6,7 @@ class Square:
         self._black_check_count = 0
 
     def __str__(self):
-        return "__" if self.piece is None else str(self.piece)
+        return "-" if self.piece is None else str(self.piece)
 
     def is_empty(self):
         return self.piece is None
